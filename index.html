@@ -7,9 +7,71 @@
     <title>Document</title>
 </head>
 <body background="sy2.jpg">
+
+    <div align="center">
+    <h1>用户登录</h1> 
     <div style="color:brown">
-        <p style="text-align:center"><h2>登录界面！！</h2></p>
-    <p style="text-align:center">账号： <input type="text" name="txtName" placeholder="请输入用户名"/></p>
-    <p style="text-align:center">密码：<input type="password" name="txtPwd"  maxlength="8" placeholder="请输入密码"/></p>
+    <label>用户：</label>
+    <input id = "username" type="text" placeholder="请输入用户名" maxlength="5"><br>
+    <label>密码：</label>
+    <input id = "pwd" type="password" placeholder="请输入密码" maxlength="8"><br>
+    <input type="button" value="登录" onclick="login()">
+    <input type="button" id="btnClear" value="清除" onclick="doClear()"/>
+    </div>
+    <script type="text/javascript">
+        let accountALL=[{
+            username:123,
+            pwd:'adc'
+        },
+        {
+            username:456,
+            pwd:'def'
+        },
+        {
+            username:789,
+            pwd:'ghi'
+        }
+    ]
+        function login()
+        {
+            let username=document.getElementById('username').value;
+            let pwd=document.getElementById('pwd').value;
+            let account=accountALL.filter(function(e)
+            {
+                return e.username==username
+            })[0];
+            if(!account)
+            {
+                alert('账户不存在！');
+            }
+            else
+            {
+                if(account.username==username&&account.pwd==pwd)
+                {
+                    location.href="kk.html";
+                }
+                else
+                {
+                    alert('密码错误！');
+                }
+            }
+        }
+        function doClear()
+        {
+            let inputs=document.getElementsByTagName("input");
+            for(let i=0;i<inputs.length;i++)
+            {
+                if(inputs[i].type=='text'||inputs[i].type=='password')
+                {
+                    inputs[i].value='';
+                }
+            }
+        }
+        let btnClear=document.getElementById('btnClear');
+        btnClear.addEventListener('click',function()
+        {
+            doClear();
+        });
+        </script>
 </body>
-</html>
+<ml>
